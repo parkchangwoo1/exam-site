@@ -1,5 +1,9 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ReactComponent as Zoom } from 'src/assets/zoom.svg';
 import styled from 'styled-components';
-import { request } from 'src/utils/axios';
+
+// import { request } from 'src/utils/axios';
 
 /************************************* temp *************************************/
 
@@ -48,8 +52,75 @@ export const AutoCompleteClick = ({ id }) => {
 	//논문 검색 페이지로 이동 함수
 };
 
+/*************************************** JSX ***************************************/
+export const SearchBoxComp = ({ font, height, text }) => {
+	const navigate = useNavigate();
+	const [searchText, setSearchText] = useState(text ? text : '');
+	const [autoCompleteData, setAutoCompleteData] = useState([]);
+
+	// input test change
+	const textChange = (text) => {
+		if (text === '') {
+			setSearchText('');
+			setAutoCompleteData([]);
+		} else {
+			setSearchText(text);
+			SearchTimer({ text: text, setAutoComplete: setAutoCompleteData });
+		}
+	};
+
+	// go to search page
+	const gotoSearchPage = (searchText) => {
+		if (searchText) navigate(`/search?q=${searchText}`);
+	};
+
+	return (
+		<SearchBoxLayout>
+			<SearchBox height={height} autoCompleteData={autoCompleteData}>
+				<input
+					type="text"
+					placeholder="무엇을 찾고 싶으신가요?"
+					className={`f-${font} pl-${font}`}
+					value={searchText}
+					onChange={(e) => textChange(e.target.value)}
+					onKeyPress={(e) => {
+						if (e.code === 'Enter') gotoSearchPage(searchText);
+					}}
+				/>
+				<button>
+					<Zoom width={`${height / 2}`} height={`${height / 2}`} onClick={() => gotoSearchPage(searchText)} />
+				</button>
+			</SearchBox>
+			{autoCompleteData.length > 0 && (
+				<AutoCompleteLayout>
+					<AutoComplete>
+						{autoCompleteData.map((list) => {
+							return (
+								<li
+									key={list.id}
+									className="justify-between"
+									onClick={() => AutoCompleteClick({ id: list.id })}
+								>
+									<AutoCompleteTitle className="title">
+										<span>{list.title}</span>
+									</AutoCompleteTitle>
+									<AutoCompleteInfo>
+										{list.author.length > 1 ? `${list.author[0]} 외` : list.author[0]},{' '}
+										{list.date.getFullYear()}
+									</AutoCompleteInfo>
+								</li>
+							);
+						})}
+					</AutoComplete>
+				</AutoCompleteLayout>
+			)}
+		</SearchBoxLayout>
+	);
+};
+
 /******************************** styled-components ********************************/
 export const SearchBoxLayout = styled.div`
+	min-width: 800px;
 	width: 800px;
 	max-width: 1200px;
 `;
@@ -57,12 +128,12 @@ export const SearchBoxLayout = styled.div`
 export const SearchBox = styled.div`
 	width: 100%;
 	max-width: 1200px;
-	height: 80px;
+	height: ${(props) => `${props.height}px`};
 	border: 1px solid #9fb8c6;
 	display: flex;
 	input {
-		width: 90%;
-		height: 78px;
+		width: ${(props) => `${100 - (props.height / 10 + 2)}%`};
+		height: ${(props) => `${props.height - 2}px`};
 		border: none;
 		outline: none;
 	}
@@ -70,8 +141,8 @@ export const SearchBox = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 10.01%;
-		height: 78px;
+		width: ${(props) => `${props.height / 10 + 2}%`};
+		height: ${(props) => `${props.height - 2}px`};
 		border: none;
 		cursor: pointer;
 		background: #9fb8c6;
@@ -119,4 +190,14 @@ export const AutoCompleteTitle = styled.div`
 export const AutoCompleteInfo = styled.div`
 	color: #afabab;
 	padding: 0.5rem 0;
+`;
+
+export const HeaderLayout = styled.div`
+	width: 100vw;
+	margin: auto;
+`;
+
+export const AutoCompleteLayout = styled.div`
+	width: 800px;
+	max-width: 1200px;
 `;
