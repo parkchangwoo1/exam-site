@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import GlobalStyles from './styles/GlobalStyle';
-import Main from './pages/main';
-import './App.css';
+import GlobalStyles from '../styles/GlobalStyle';
+import { Main, Search } from '../pages';
+import '../App.css';
 
 function App() {
 	return (
@@ -10,6 +10,7 @@ function App() {
 			<GlobalStyles />
 			<Routes>
 				<Route path="/" element={<Main />} />
+				<Route path="/search" element={<Search />} />
 			</Routes>
 		</BrowserRouter>
 	);
