@@ -80,7 +80,7 @@ export const SearchBoxComp = ({ font, height, text }) => {
 				<input
 					type="text"
 					placeholder="무엇을 찾고 싶으신가요?"
-					className={`f-${font} pl-${font}`}
+					className={font ? `f-${font} pl-${font}` : ''}
 					value={searchText}
 					onChange={(e) => textChange(e.target.value)}
 					onKeyPress={(e) => {
@@ -136,6 +136,10 @@ export const SearchBox = styled.div`
 		height: ${(props) => `${props.height - 2}px`};
 		border: none;
 		outline: none;
+		&::placeholder {
+			font-weight: bold;
+			color: #9fb8c6;
+		}
 	}
 	button {
 		display: flex;
