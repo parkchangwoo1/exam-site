@@ -1,15 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const SubjectButton = ({ text, onClick }) => {
-	return <LabelButton onClick={onClick}>{text}</LabelButton>;
+export const RouteButton = ({ text, onClick }) => {
+	return (
+		<LabelClickButton borderColor="#d4ebb9" onClick={onClick}>
+			{text}
+		</LabelClickButton>
+	);
 };
 
-const LabelButton = styled.button`
+export const LabelButton = ({ text, onClick }) => {
+	return (
+		<LabelClickButton borderColor="#b9d7eb" onClick={onClick}>
+			{text}
+		</LabelClickButton>
+	);
+};
+
+const LabelClickButton = styled.button`
 	width: 32%;
 	padding: 5px 10px;
 	margin: 0.5%;
 	border-radius: 5px;
-	border: 1px solid #b9d7eb;
+	border: 1px solid ${(props) => `${props.borderColor}`};
 	background-color: white;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 `;

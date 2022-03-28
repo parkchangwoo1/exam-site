@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { UseLocationQuery } from 'src/utils/useLocation';
-import { request } from 'src/utils/axios';
 import styled from 'styled-components';
 
 import PeriodFilter from './periodFilter';
 import SearchResult from './searchResult';
 import InterestedPaper from './interestedPaper';
 import SearchHeader from 'src/components/header/searchHeader';
+import { getPaperSearchList } from 'src/API/search';
 
 const SearchList = () => {
-	const searchQuery = UseLocationQuery().q;
 	const yearArr = [
 		{ id: 0, name: '0' },
 		{ id: 1, name: '2022' },
@@ -20,55 +18,23 @@ const SearchList = () => {
 	];
 	const [searchedPaperList, setSearchedPaperList] = useState([]);
 	const [selectedYear, setSelectedYear] = useState(0);
-	const [selectedPapers, setSelectedPaper] = useState([]);
 
 	// query → paper fetch
 	const getPaperList = async () => {
-		const res = await request('GET', 'https://mocki.io/v1/c4eeb733-989b-4db6-8aaa-e1d06986443e', searchQuery);
-		return res.searchResult;
+		const res = await getPaperSearchList();
+		return res;
 	};
 
 	// set paperList
 	const setPaperList = async (year) => {
 		const paperList = await getPaperList();
-		const filteredPaperList = yearFiltering(paperList, year);
-		setSearchedPaperList(filteredPaperList);
-	};
-
-	// filter paperList by year
-	const yearFiltering = (arr, standardYear) => {
-		return arr.filter((element) => parseInt(element.year) >= standardYear);
+		const filteredPaperList = paperList.filter((element) => parseInt(element.year) >= year);
+ 		setSearchedPaperList(filteredPaperList);
 	};
 
 	// current year
 	const onSelectedYear = (year) => {
 		setSelectedYear(year.name);
-	};
-
-	// isHere ? true : false
-	const isHere = (list, id) => {
-		if (list.findIndex((element) => element.id === id) === -1) {
-			return false;
-		}
-		return true;
-	};
-
-	// add to interested paperlist
-	const addSelectedPaper = (paper) => {
-		if (!isHere(selectedPapers, paper.id)) {
-			let newArr = [];
-			newArr = [...selectedPapers, paper];
-			setSelectedPaper(newArr);
-		}
-	};
-
-	// remove interested paper
-	const removeSelectedPaper = (paper) => {
-		if (isHere(selectedPapers, paper.id)) {
-			let newArr = [];
-			newArr = selectedPapers.filter((element) => element.id !== paper.id);
-			setSelectedPaper(newArr);
-		}
 	};
 
 	useEffect(() => setPaperList(selectedYear), [selectedYear]);
@@ -82,8 +48,8 @@ const SearchList = () => {
 			</LeftBox>
 
 			<RighBox>
-				<SearchResult papers={searchedPaperList} addSelectedPaper={addSelectedPaper} />
-				<InterestedPaper selectedPapers={selectedPapers} removeSelectedPaper={removeSelectedPaper} />
+				<SearchResult paperList={searchedPaperList} />
+				<InterestedPaper />
 			</RighBox>
 		</Wrapper>
 	);

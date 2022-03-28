@@ -5,26 +5,47 @@ const globalStyles = createGlobalStyle`
     ${reset};
 	* {
 		box-sizing: border-box;
+		scroll-behavior: smooth;	
 	}
 	a {
-		text-decoration: none;
-		color: #ffffff;
+		text-decoration:none;
+		&:hover {
+		text-decoration: 1px underline;
+		text-underline-position: under;
 	}
-	body {
-		font-family: 'Spoqa Han Sans Neo', sans-serif;
+		margin-right: 0.5rem;
+		color: #428cc5;
 	}
-
+	hr{
+		border: 1px solid #efefef;
+	}
+	.title-font{
+		font-family: "Noto Sans KR", sans-serif;
+	}
+	body {    
+		font-family: "Noto Sans KR", sans-serif;
+	}
 	.tab {
 		border-radius: 20px 20px 0px 0px;
 	}
-
+	.tooltip{
+		width: max-content;
+		line-height: 1.5;
+		height: fit-content;
+		white-space:pre-line;
+		padding:0.8rem;
+		color:#454545;
+		strong{
+			font-weight: bold;
+			color:#252525;
+		}
+	}
 	.normal {
 		font-weight: 400;
 	}
 	.bold {
 		font-weight: 700;
 	}
-
 	h1,
 	h2,
 	h3,
@@ -383,6 +404,15 @@ const globalStyles = createGlobalStyle`
 		align-items: end;
 	}
 
+	.black{
+		color: black;
+	}
+	.basic-blue{
+		color: #3182fb;
+	}
+	.highlight{
+		color:#2652c5;
+	}
 	.blue {
 		color: #0053fd;
 	}

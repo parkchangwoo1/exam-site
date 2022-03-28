@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyles from '../styles/GlobalStyle';
-import { Main, SearchList, Paper, SubjectFilter } from '../pages';
+import * as Pages from '../pages';
 import '../App.css';
 
 function App() {
@@ -9,10 +9,11 @@ function App() {
 		<BrowserRouter>
 			<GlobalStyles />
 			<Routes>
-				<Route path="/" element={<Main />} />
-				<Route path="/search" element={<SearchList />} />
-				<Route path="/search/paper" element={<Paper />} />
-				<Route path="/subjectFilter" element={<SubjectFilter />} />
+				<Route path="/" element={<Pages.Main />} />
+				<Route path="/search" element={<Pages.SearchList />} />
+				<Route path="/search/paper" element={<Pages.Paper />} />
+				<Route path="/subjectFilter" element={<Pages.SubjectFilter />} />
+				<Route path="/conceptFilter" element={<Pages.ConceptFilter />} />
 			</Routes>
 		</BrowserRouter>
 	);

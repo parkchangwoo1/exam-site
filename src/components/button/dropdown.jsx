@@ -10,7 +10,6 @@ const Dropdown = ({ options, font }) => {
 
 	useEffect(() => {
 		options?.forEach((option) => {
-			console.log(option.value);
 			if (option.default) setSelected(option.value);
 		});
 	}, [options]);

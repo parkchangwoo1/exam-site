@@ -48,10 +48,58 @@ const tempChartData = {
 	],
 };
 
+const trendChartDataTemp = [
+	{
+		name: '인공지능',
+		data: [
+			{ x: '자연과학', y: 12 },
+			{ x: '사회의학', y: 29 },
+			{ x: '의약학', y: 57 },
+			{ x: '교육학', y: 43 },
+			{ x: '인공지능', y: 87 },
+			{ x: ['공학', '4.0'], y: 22 },
+			{ x: ['운영', '효율성'], y: 34 },
+			{ x: '생명공학', y: 44 },
+		],
+	},
+	{
+		name: '공학 4.0',
+		data: [
+			{ x: '자연과학', y: 21 },
+			{ x: '사회의학', y: 44 },
+			{ x: '의약학', y: 52 },
+			{ x: '교육학', y: 15 },
+			{ x: '인공지능', y: 77 },
+			{ x: ['공학', '4.0'], y: 99 },
+			{ x: ['운영', '효율성'], y: 98 },
+			{ x: '생명공학', y: 34 },
+		],
+	},
+	{
+		name: '운영 효율성',
+		data: [
+			{ x: '자연과학', y: 52 },
+			{ x: '사회의학', y: 76 },
+			{ x: '의약학', y: 43 },
+			{ x: '교육학', y: 64 },
+			{ x: '인공지능', y: 9 },
+			{ x: ['공학', '4.0'], y: 56 },
+			{ x: ['운영', '효율성'], y: 13 },
+			{ x: '생명공학', y: 90 },
+		],
+	},
+];
+
 /*-------------------------------------------------------------- */
 
-export const getChartData = async () => {
-	// const res = await request("GET", "url", {data:'data'});
+export const getChartData = async (id) => {
+	// const res = await request("GET", "url + id", {data:'data'});
 
 	return tempChartData;
+};
+
+export const getPaperTrend = async () => {
+	// const res = await request("GET", "url", {data:'data'});
+
+	return trendChartDataTemp;
 };
