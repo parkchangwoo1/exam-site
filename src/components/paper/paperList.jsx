@@ -30,7 +30,14 @@ const PaperList = ({ paper }) => {
 					<p>
 						{paper.concepts.map((concept, idx) => {
 							return (
-								<a key={idx} href={`/conceptFilter?ci=${concept.conceptId}`}>
+								<a
+									key={idx}
+									href={'/'}
+									onClick={(e) => {
+										e.preventDefault();
+										navigate(`/conceptFilter?ci=${concept.conceptId}`);
+									}}
+								>
 									{idx + 1 < paper.concepts.length ? concept.text + ',' : concept.text}
 								</a>
 							);
@@ -39,7 +46,13 @@ const PaperList = ({ paper }) => {
 				</li>
 				<li>
 					<ListTitle>주제어</ListTitle>
-					<a href={`/subjectFilter?si=${paper.subject.subjectId}`}>
+					<a
+						href={'/'}
+						onClick={(e) => {
+							e.preventDefault();
+							navigate(`/subjectFilter?si=${paper.subject.subjectId}`);
+						}}
+					>
 						[{paper.subject.subjectId}: {paper.subject.text}]
 					</a>
 				</li>
