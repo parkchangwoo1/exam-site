@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+
 /************************************* jsx *************************************/
 //trendChart
 export const TrendChart = ({ chartData }) => {
@@ -16,9 +17,10 @@ export const TrendChart = ({ chartData }) => {
 			type: 'heatmap',
 			toolbar: {
 				offsetX: -15,
-				offsetY: -35,
+				offsetY: -47,
 				show: true,
 				tools: {
+					// download: '<img src="src/assets/menu.svg" class="ico-download" width="20">',
 					download: true,
 					selection: false,
 					zoom: false,
@@ -105,7 +107,7 @@ export const TrendChart = ({ chartData }) => {
 						<div class="tooltip">과거 1년 간 
 						<strong>${tooltipText(w.globals.seriesNames[seriesIndex])}</strong> 관련 주제가
 						<strong>${tooltipText(w.globals.labels[dataPointIndex])}</strong> 연구의 
-						<strong>${series[seriesIndex][dataPointIndex]}%</strong> 에 등장했습니다.
+						<strong class="percent">${series[seriesIndex][dataPointIndex]}%</strong> 에 등장했습니다.
 					</div>`;
 			},
 			fixed: {
@@ -113,7 +115,7 @@ export const TrendChart = ({ chartData }) => {
 				position: 'bottomRight',
 			},
 		},
-		colors: ['#2F75A3'],
+		colors: ['#FB8A3C'],
 		title: {
 			align: 'left',
 			margin: 20,
@@ -121,9 +123,8 @@ export const TrendChart = ({ chartData }) => {
 			offsetY: 0,
 			floating: false,
 			style: {
-				fontSize: '18px',
+				fontSize: '12px',
 				fontWeight: 'bold',
-
 				fontFamily: undefined,
 				color: '#263238',
 			},

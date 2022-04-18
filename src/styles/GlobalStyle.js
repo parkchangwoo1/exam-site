@@ -37,8 +37,11 @@ const globalStyles = createGlobalStyle`
 		color:#454545;
 		strong{
 			font-weight: bold;
-			color:#252525;
+			
 		}
+	}
+	.tooltip .percent{
+		color:var(--color-orange-point);
 	}
 	.normal {
 		font-weight: 400;
@@ -162,6 +165,33 @@ const globalStyles = createGlobalStyle`
 	}
 	.mb-100 {
 		margin-bottom: 100px;
+	}
+	.mr-5 {
+		margin-right: 5px;
+	}
+	.mr-8 {
+		margin-right: 8px;
+	}
+	.mr-16 {
+		margin-right: 16px;
+	}
+	.mr-24 {
+		margin-right: 24px;
+	}
+	.mr-32 {
+		margin-right: 32px;
+	}
+	.mr-40 {
+		margin-right: 40px;
+	}
+	.mr-48 {
+		margin-right: 48px;
+	}
+	.mr-56 {
+		margin-right: 56px;
+	}
+	.mr-100 {
+		margin-right: 100px;
 	}
 
 	.p-8{
@@ -515,6 +545,29 @@ const globalStyles = createGlobalStyle`
 		overflow: hidden;
 		border: 0;
 	}
+	:root {
+    	--color-orange-point: #EF6C00; 
+		--color-blue-point: #3949AB;
+
+		--color-black-text1: #212121;
+		--color-black-text2: #424242;
+		--color-black-text3: #616161;
+		--color-black-text4: #808080;
+
+		--color-gray-button: #DADCE0;
+		--color-gray-button-hover: #C4C4C4;
+		--color-gray-line: #D1D1D1;
+
+		--color-white-bg: #ffffff;
+		--color-white-footer: #F6F6F6;
+		--color-white-hover: #F7F7F9;
+
+		--font-size-12: 12px;
+		--font-size-14: 14px;
+		--font-size-16: 16px;
+		--font-size-18: 18px;
+		--font-size-20: 20px;
+  }
 `;
 
 export default globalStyles;

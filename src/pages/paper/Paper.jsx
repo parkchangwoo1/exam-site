@@ -33,10 +33,12 @@ const Paper = () => {
 							<MainTtitle className="bold mb-8">{info.title.ko}</MainTtitle>
 							<SubTitle>{info.title.en}</SubTitle>
 						</PaperHeader>
-						<div className="flex">
+						<PaperSection className="justify-between">
 							<PaperInfo info={info} />
-							<Trend />
-						</div>
+							<TrendArticle>
+								<Trend />
+							</TrendArticle>
+						</PaperSection>
 						<Recommend />
 					</SearchDetail>
 				</>
@@ -50,18 +52,23 @@ export default Paper;
 /******************************** styled-components ********************************/
 
 const SearchDetail = styled.div`
-	width: 70vw;
-	padding: 1rem;
-	margin: 0.5rem auto;
+	width: 990px;
+	margin: 60px auto;
 `;
 
 const PaperHeader = styled.div`
 	width: 100%;
 	line-height: 35px;
-	padding: 1rem 1rem 2rem 1rem;
+	padding-bottom: 30px;
 	border-bottom: 1px solid #efefef;
 `;
 
+const PaperSection = styled.section`
+	margin-top: 50px;
+`;
+const TrendArticle = styled.article`
+	width: 500px;
+`;
 const MainTtitle = styled.p`
 	font-size: 1.5rem;
 `;

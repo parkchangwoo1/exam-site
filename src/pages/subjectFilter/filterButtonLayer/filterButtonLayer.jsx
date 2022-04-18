@@ -9,14 +9,14 @@ export const FilterButtonLayer = ({ title, data, type, onClick }) => {
 			{type === 'label' ? (
 				<SubjectButtonBox>
 					{data?.map((label) => (
-						<RouteButton onClick={onClick} key={label.id} text={label.text} />
+						<RouteButton onClick={() => onClick(label.id)} key={label.id} text={label.text} />
 					))}
 				</SubjectButtonBox>
 			) : (
 				<>
 					<SubjectButtonBox>
 						{data?.map((label) => (
-							<LabelButton onClick={onClick} key={label.id} text={label.text} />
+							<LabelButton onClick={() => onClick(label.id)} key={label.id} text={label.text} />
 						))}
 					</SubjectButtonBox>
 				</>
@@ -26,12 +26,14 @@ export const FilterButtonLayer = ({ title, data, type, onClick }) => {
 };
 
 const Title = styled.p`
-	font-size: 1.1rem;
-	margin: 10px 0;
+	font-size: var(--font-size-12);
+	font-weight: 700;
+	margin: 12px 0;
 `;
 
 const SubjectButtonBox = styled.div`
-	width: 80%;
+	font-size: var(--font-size-12);
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 `;
